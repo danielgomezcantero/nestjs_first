@@ -12,3 +12,7 @@ export class AppController {
     //return this.appService.getHello();
   }
 }
+//Instalaciones
+// class-validator, class-transformer, npm install --save @nestjs/swagger swagger-ui-express
+// orm mssqql
+//type orm
