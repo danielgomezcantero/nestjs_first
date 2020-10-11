@@ -10,21 +10,25 @@ export class ProductosController {
 
 
     @Get()
-    findAll(){
-        return this.productosService.findAll();
+    async findAll(){
+        const data = await this.productosService.findAll();
+        return  {
+            message:'Petición correcta',
+            data
+        }
     }
     
     @Get(':id')
-    getOne(@Param('id', ParseIntPipe) ids:number ){
-        console.log(typeof ids);//Capturar la peticion url
-        return this.productosService.getOne(ids);    
+    async getOne(@Param('id', ParseIntPipe) ids:number ){
+        console.log(typeof ids);//Capturar la peticion url - parseInt para convertir string recibido en int
+        return await this.productosService.getOne(ids);    
     }
 
     @Post()
     createOne(
         @Body() dto:CreateProductoDto,//@Body('nombre') nombre:any       
     ){
-        return dto;
+        return this.productosService.createOne(dto);
     }
     
 
@@ -33,14 +37,14 @@ export class ProductosController {
         @Param('id') id:number,
         @Body() dto: EditProductoDto,
     ){
-        return this.productosService.editOne(id);
+        return this.productosService.editOne(id, dto);
     }
 
 
     @Delete(':id')
     deleteOne(@Param('id') id:number ){
 
-        return this.productosService.editOne(id);
+        return this.productosService.deleteOne(id);
     }
 
 }
