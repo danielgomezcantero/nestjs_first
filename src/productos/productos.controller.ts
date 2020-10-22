@@ -1,8 +1,9 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
 import { ProductosService } from './productos.service';
 
 import { CreateProductoDto } from './dto/create-producto';
 import { EditProductoDto } from './dto/edit-producto';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
+
 
 @Controller('productos')
 export class ProductosController {
@@ -19,9 +20,9 @@ export class ProductosController {
     }
     
     @Get(':id')
-    async getOne(@Param('id', ParseIntPipe) ids:number ){
-        console.log(typeof ids);//Capturar la peticion url - parseInt para convertir string recibido en int
-        return await this.productosService.getOne(ids);    
+    async getOne(@Param('id', ParseIntPipe) id:number ){
+        console.log(typeof id);//Capturar la peticion url - parseInt para convertir string recibido en int
+        return await this.productosService.getOne(id);    
     }
 
     @Post()
